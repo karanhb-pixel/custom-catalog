@@ -84,7 +84,7 @@ Custom-Catalog is a WordPress Theme built using a custom starter theme. This the
 ### Single Project
 <img src="Screenshots/project-single.png" width="600" alt="Project Screenshot">
 
-###Thumbnail Screenshot
+### Thumbnail Screenshot
 <img src="Screenshots/thumbnail.png" width="600" alt="Thumbnail Screenshot">
 
 ---
