@@ -103,6 +103,74 @@ function custom_catalog_setup() {
 add_action( 'after_setup_theme', 'custom_catalog_setup' );
 
 /**
+ * Add SEO meta description for archive pages
+ */
+function cc_seo_meta_description() {
+    if (is_post_type_archive('project')) {
+        $description = 'Explore our portfolio of interior design projects including modular kitchens, wardrobes, and complete home interiors by MR Furniture.';
+        echo '<meta name="description" content="' . esc_attr($description) . '">' . "\n";
+    }
+}
+add_action( 'wp_head', 'cc_seo_meta_description' );
+
+/**
+ * Optimize images by serving scaled versions
+ * Replace full size images with large size where appropriate
+ */
+function cc_optimize_image_sizes($html, $post_id, $post_image_id) {
+    // Only optimize for project post type
+    if (get_post_type($post_id) === 'project') {
+        // Replace 'full' size with 'large' size in image HTML
+        $html = str_replace('size-full', 'size-large', $html);
+    }
+    return $html;
+}
+add_filter('post_thumbnail_html', 'cc_optimize_image_sizes', 10, 3);
+
+/**
+ * Add admin notice for caching plugin recommendation
+ */
+function cc_caching_plugin_recommendation() {
+    // Only show on production environments, not local
+    if (defined('WP_ENVIRONMENT_TYPE') && WP_ENVIRONMENT_TYPE === 'local') {
+        return;
+    }
+    
+    // Check if caching plugins are already active
+    $active_plugins = get_option('active_plugins');
+    $cache_plugins = array('wp-super-cache/wp-cache.php', 'w3-total-cache/w3-total-cache.php', 'wp-rocket/wp-rocket.php', 'cache-enabler/cache-enabler.php');
+    
+    $has_cache_plugin = false;
+    foreach ($cache_plugins as $plugin) {
+        if (in_array($plugin, $active_plugins)) {
+            $has_cache_plugin = true;
+            break;
+        }
+    }
+    
+    if (!$has_cache_plugin && current_user_can('install_plugins')) {
+        echo '<div class="notice notice-warning is-dismissible">
+            <p><strong>Performance Recommendation:</strong> To improve your site speed, consider installing a caching plugin like WP Super Cache, W3 Total Cache, or WP Rocket. This is especially important for shared hosting environments like InfinityFree.</p>
+        </div>';
+    }
+}
+add_action('admin_notices', 'cc_caching_plugin_recommendation');
+
+/**
+ * Enqueue lightbox assets for project gallery
+ */
+function cc_enqueue_lightbox_assets() {
+    if (is_singular('project')) {
+        // Add lightbox CSS
+        wp_enqueue_style('cc-lightbox', get_template_directory_uri() . '/css/lightbox.css');
+        
+        // Add lightbox JS
+        wp_enqueue_script('cc-lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), _S_VERSION, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'cc_enqueue_lightbox_assets');
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.

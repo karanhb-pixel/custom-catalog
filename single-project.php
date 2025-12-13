@@ -31,7 +31,7 @@ get_header();
             <div class="hero-overlay"></div>
 
             <?php if (has_post_thumbnail()): ?>
-                <?php the_post_thumbnail('full', array('class' => 'hero-bg')); ?>
+                <?php the_post_thumbnail('large', array('class' => 'hero-bg')); ?>
             <?php else: ?>
                 <img src="https://placehold.co/1600x400?text=Project+Image" class="hero-bg"
                     alt="<?php the_title_attribute(); ?>" />
