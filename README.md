@@ -79,13 +79,13 @@ Custom-Catalog is a WordPress Theme built using a custom starter theme. This the
 > Add actual screenshot paths.
 
 ### Homepage
-<img src="screenshots/home.png" width="600" alt="Homepage Screenshot">
+<img src="Screenshots/home.png" width="600" alt="Homepage Screenshot">
 
 ### Single Project
-<img src="screenshots/single-project.png" width="600" alt="Project Screenshot">
+<img src="Screenshots/project-single.png" width="600" alt="Project Screenshot">
 
-### Service Archive
-<img src="screenshots/service-archive.png" width="600" alt="Service Archive Screenshot">
+### Thumbnail Screenshot
+<img src="Screenshots/thumbnail.png" width="600" alt="Thumbnail Screenshot">
 
 ---
 
@@ -94,8 +94,8 @@ Custom-Catalog is a WordPress Theme built using a custom starter theme. This the
 **Your Name**
 WordPress Theme Developer
 
-🔗 Portfolio: [Your portfolio URL]
-🔗 LinkedIn: [Your LinkedIn URL]
+🔗 Portfolio: [https://karanbhanushali-portfolio-cms.netlify.app/]
+🔗 LinkedIn: [(https://www.linkedin.com/in/karan-bhanushali/)]
 
 ---
 
